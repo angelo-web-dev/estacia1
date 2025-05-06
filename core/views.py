@@ -7,6 +7,6 @@ def index(request):
     if request.method == 'POST':
         texto = request.POST['texto']
         start = request.POST['start']
-        return JsonResponse({'key':start, 'texto': texto})
+        return JsonResponse({'key':start})
     if request.method == 'GET':
         return render(request, 'index.html')
