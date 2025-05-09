@@ -1,22 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block content %}
     <h1>Hola mundo</h1>
     <form action="" method="post">
         {% csrf_token %}
-        <input type="text" name="texto">
-        <input type="date" name="start">
-        <select name="" id="">
-            <option value="">Uno</option>
-            <option value="">Dos</option>
-            <option value="">Tres</option>
+        <input type="text" name="name" placeholder="Nombre" required>
+        <input type="text" name="last_name" required placeholder="Apellido">
+        <input type="date" name="birthday" required>
+        <select name="nacionality_id" required>
+            {% for nacionality in nacionalities %}
+                <option value="{{nacionality.id}}">{{nacionality.name}}</option>
+            {% endfor %}
         </select>
+        <input type="number" min="0" name="age" required placeholder="Edad">
+        <textarea name="descripcion" required></textarea>
+
         <input type="submit" value="Enviar">
     </form>
-</body>
-</html>
+    {% include 'mostrardatos.html' %}
+    {% include 'paginacion.html' %}
+
+{% endblock %}
+
